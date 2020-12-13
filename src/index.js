@@ -1,26 +1,12 @@
-import { Terminal } from 'xterm'
 import 'xterm/css/xterm.css'
+import Terminal from './Terminal'
+import Parser from './Terminal/Parser'
 
-let currentLine = ''
-
-const term = new Terminal({
-  cursorBlink: 'block'
-})
-term.open(document.getElementById('app'))
-term.onKey(({ key, keyCode }) => {
-  if (keyCode === 13) {
-    if (currentLine) {
-      term.write('\r\n')
-      currentLine = ''
-    }
-  } else {
-    currentLine += key
-    term.write(key)
-  }
-})
-
-term.onData((...args) => {
-  console.log('data', args)
-})
-
+const term = new Terminal(document.getElementById('app'))
+const parser = new Parser()
+term.onCommand = parser.parse
 window.term = term
+
+document.addEventListener('DOMContentLoaded', () => {
+  term.init()
+})
