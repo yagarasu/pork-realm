@@ -1,7 +1,5 @@
 import { Noise } from 'noisejs'
 
-const PERLIN_RES = 32
-
 class Map {
   constructor(seed, width, height) {
     this.seed = seed
@@ -42,12 +40,18 @@ class Map {
   }
 
   generateTileRandom(x, y) {
-    return Math.round(Math.random() * 255)
+    return Math.random()
+    // return Math.round(Math.random() * 255)
   }
 
   generateTilePerlin(x, y) {
-    const noisePoint = this.noise.perlin2(x / PERLIN_RES, y / PERLIN_RES)
-    return Math.abs(noisePoint) * 255
+    const noisePointA = this.noise.perlin2(x / 2, y / 2)
+    const noisePointB = this.noise.perlin2(x / 4, y / 4)
+    const noisePointC = this.noise.perlin2(x / 16, y / 16)
+    const noisePointD = this.noise.perlin2(x / 64, y / 64)
+    return Math.abs(noisePointD)
+    const noisePoint = (noisePointA * 0.25) + (noisePointB * 0.25) + (noisePointC * 0.5)
+    // return Math.pow(Math.abs(noisePoint), 2.5)
   }
 
   generateTileSimplex(x, y) {
