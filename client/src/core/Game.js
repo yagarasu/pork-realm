@@ -7,7 +7,7 @@ class Game {
     this.running = false
     this.canvas = canvas
     this.screen = new Screen(this.canvas)
-    this.map = new Map(41 * 3, 30 * 3)
+    this.map = new Map(41 * 5, 30 * 5)
     this.mapGenerator = new MapGenerator(1000)
     this.mapGenerator.generate(this.map)
   }
@@ -16,8 +16,8 @@ class Game {
     this.running = true
     this.vx = 0
     this.vy = 0
-    this.vw = 41
-    this.vh = 30
+    this.vw = 41// * 5
+    this.vh = 30// * 5
     document.addEventListener('keyup', e => {
       const { key } = e
       switch (key) {
