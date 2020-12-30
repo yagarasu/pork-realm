@@ -1,6 +1,7 @@
 import Screen from './Screen'
 import Map from './Map'
 import MapGenerator from './MapGenerator'
+import TileSet from './TileSet'
 
 class Game {
   constructor(canvas) {
@@ -10,14 +11,15 @@ class Game {
     this.map = new Map(41 * 5, 30 * 5)
     this.mapGenerator = new MapGenerator(1000)
     this.mapGenerator.generate(this.map)
+    this.tileSet = new TileSet()
   }
 
   start() {
     this.running = true
     this.vx = 0
     this.vy = 0
-    this.vw = 41// * 5
-    this.vh = 30// * 5
+    this.vw = 41 * 2// * 5
+    this.vh = 30 * 2// * 5
     document.addEventListener('keyup', e => {
       const { key } = e
       switch (key) {
@@ -50,7 +52,8 @@ class Game {
     for (let y = this.vy; y < (this.vh + this.vy); y++) {
       for (let x = this.vx; x < (this.vw + this.vx); x++) {
         const tile = this.map.getTile(x, y)
-        this.screen.drawTile(dx, dy, tile)
+        this.tileSet.drawTile(this.screen, dx, dy, tile)
+        // this.screen.drawTile(dx, dy, tile)
         dx++
       }
       dy++

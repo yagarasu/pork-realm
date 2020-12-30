@@ -4,9 +4,6 @@ import tiles from './tiles'
 class MapGenerator {
   constructor(seed) {
     this.seed = seed || Math.random() * 10000
-    this.vals = []
-    this.min = 0
-    this.max = 0
   }
 
   generate(map) {
@@ -18,13 +15,28 @@ class MapGenerator {
         const elevation = this.generateElevation(x, y, elevationNoise, map)
         const temp = this.generateTemperature(x, y, tempNoise, map)
         const light = this.generateLight(x, y, lightNoise, map)
-        const tile = this.calculateTile(elevation, temp, light)
+        const tile = this.calculateTile(elevation, temp, 1)
         map.setTile(x, y, tile)
       }
     }
   }
 
   calculateTile(e, t, l) {
+    if (e <= 0.25) {
+      if (t < 0.40) return 'ICE'
+      if (t < 0.50) return 'WATER'
+      return 'LAVA'
+    }
+    if (e <= 0.40) {
+      if (t < 0.50) return 'SHALLOW_WATER'
+      return 'LAVA'
+    }
+    if (e <= 0.50) return 'FLOOR'
+    if (e <= 0.65) return 'HIGHER'
+    return 'PILAR'
+  }
+
+  calculateTile_(e, t, l) {
     if (e <= 0.25) {
       if (t < 0.40) return { ...tiles.ICE, light: l }
       if (t < 0.50) return { ...tiles.WATER, light: l }

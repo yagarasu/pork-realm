@@ -1,4 +1,4 @@
-const TILE_SIZE = 32
+const TILE_SIZE = 5
 
 class Screen {
   constructor(canvas) {
