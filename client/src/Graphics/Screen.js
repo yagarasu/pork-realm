@@ -8,7 +8,7 @@ class Screen {
   constructor() {
     this.createCanvas()
     this.clear()
-    this.stage = new Container()
+    this.stage = new Container(this)
   }
 
   createCanvas() {
@@ -23,6 +23,13 @@ class Screen {
     const ctx = this.context
     ctx.fillStyle = '#000000'
     ctx.rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+    ctx.fill()
+  }
+
+  plot(x, y, color) {
+    const ctx = this.context
+    ctx.fillStyle = color
+    ctx.rect(x, y, PIXEL_SIZE, PIXEL_SIZE)
     ctx.fill()
   }
 

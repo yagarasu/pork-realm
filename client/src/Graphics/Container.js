@@ -11,7 +11,7 @@ class Container {
   }
 
   addChild(child) {
-    this.children.append(child)
+    this.children.push(child)
   }
 
   reset() {

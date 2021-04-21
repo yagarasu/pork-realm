@@ -1,4 +1,5 @@
 import Screen from 'Graphics/Screen'
+import MainScene from 'scenes/MainScene'
 
 class Game {
   constructor() {
@@ -6,8 +7,8 @@ class Game {
     this.lastTick = null
     this.ticker = null
     this.tick = this.tick.bind(this)
-    this.scene = null
     this.screen = new Screen()
+    this.scene = new MainScene(this)
   }
 
   run() {
