@@ -2,7 +2,7 @@ import Container from 'Graphics/Container'
 
 export const SCREEN_WIDTH = 720
 export const SCREEN_HEIGHT = 420
-export const PIXEL_SIZE = 4
+export const PIXEL_SIZE = 8
 
 class Screen {
   constructor() {
@@ -22,14 +22,18 @@ class Screen {
   clear() {
     const ctx = this.context
     ctx.fillStyle = '#000000'
-    ctx.rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+    ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
     ctx.fill()
+  }
+
+  globalToLocalCoord(x, y) {
+    return [x * PIXEL_SIZE, y * PIXEL_SIZE]
   }
 
   plot(x, y, color) {
     const ctx = this.context
     ctx.fillStyle = color
-    ctx.rect(x, y, PIXEL_SIZE, PIXEL_SIZE)
+    ctx.fillRect(x * PIXEL_SIZE, y * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE)
     ctx.fill()
   }
 
