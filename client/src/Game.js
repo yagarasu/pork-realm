@@ -28,7 +28,9 @@ class Game {
     if (!this.lastTick) this.lastTick = ts
     const delta = ts - this.lastTick
     this.scene.update(delta)
+    this.screen.clear()
     this.screen.render(delta)
+    this.ticker = window.requestAnimationFrame(this.tick)
   }
 }
 

@@ -13,10 +13,12 @@ class MainScene {
     this.color.x = 5
     this.color.y = 5
     this.sprite.x = 15
+    this.sprite.vx = 0.001
     this.sprite.y = 5
   }
   update(delta) {
-
+    this.sprite.x += (this.sprite.vx * delta)
+    console.log('tick')
   }
 }
 

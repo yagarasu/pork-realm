@@ -2,7 +2,7 @@ import Container from 'Graphics/Container'
 
 export const SCREEN_WIDTH = 720
 export const SCREEN_HEIGHT = 420
-export const PIXEL_SIZE = 8
+export const PIXEL_SIZE = 4
 
 class Screen {
   constructor() {
