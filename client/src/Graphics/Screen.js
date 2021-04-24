@@ -9,6 +9,9 @@ class Screen {
     this.createCanvas()
     this.clear()
     this.stage = new Container(this)
+    const [w, h] = this.localToGlobalCoord(SCREEN_WIDTH, SCREEN_HEIGHT)
+    this.width = w
+    this.height = h
   }
 
   createCanvas() {
@@ -28,6 +31,10 @@ class Screen {
 
   globalToLocalCoord(x, y) {
     return [x * PIXEL_SIZE, y * PIXEL_SIZE]
+  }
+
+  localToGlobalCoord(x, y) {
+    return [Math.round(x / PIXEL_SIZE), Math.round(y / PIXEL_SIZE)]
   }
 
   plot(x, y, color) {

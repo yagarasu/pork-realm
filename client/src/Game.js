@@ -26,7 +26,8 @@ class Game {
   tick(ts) {
     if (!this.scene) return
     if (!this.lastTick) this.lastTick = ts
-    const delta = ts - this.lastTick
+    const delta = (ts - this.lastTick) / 16.62
+    this.lastTick = ts
     this.scene.update(delta)
     this.screen.clear()
     this.screen.render(delta)

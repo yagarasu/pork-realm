@@ -7,4 +7,4 @@ window.game = game
 
 setTimeout(() => {
   game.stop()
-}, 1000)
+}, 20000)
